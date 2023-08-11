@@ -1,14 +1,12 @@
 use egui::Label;
 
 pub struct TemplateApp {
-    folder: String,
+    folder: Path,
 }
 
 impl Default for TemplateApp {
     fn default() -> Self {
-        return TemplateApp {
-            folder: String::new(),
-        };
+        return TemplateApp { folder: "/" };
     }
 }
 
@@ -17,17 +15,17 @@ impl eframe::App for TemplateApp {
         egui::TopBottomPanel::top("top_panel").show(ctx, |ui| {
             egui::menu::bar(ui, |ui| {
                 ui.menu_button("File", |ui| {
+                    if ui.button("Choice").clicked() {
+                        self.folder = rfd::FileDialog::new()
+                            .set_directory("/")
+                            .pick_folder()
+                            .unwrap()
+                            .to_str()
+                            .unwrap();
+                    }
                     if ui.button("Quit").clicked() {
                         frame.close();
                     }
-                    // if ui.button("Choice").clicked() {
-                    //     folder = rfd::FileDialog::new()
-                    //         .set_directory("/")
-                    //         .pick_folder()
-                    //         .unwrap()
-                    //         .to_str()
-                    //         .unwrap();
-                    // }
                 });
             });
         });
