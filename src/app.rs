@@ -1,12 +1,14 @@
-use egui::Label;
+use std::path::PathBuf;
 
 pub struct TemplateApp {
-    folder: Path,
+    folder: PathBuf,
 }
 
 impl Default for TemplateApp {
     fn default() -> Self {
-        return TemplateApp { folder: "/" };
+        return TemplateApp {
+            folder: PathBuf::new(),
+        };
     }
 }
 
@@ -19,8 +21,6 @@ impl eframe::App for TemplateApp {
                         self.folder = rfd::FileDialog::new()
                             .set_directory("/")
                             .pick_folder()
-                            .unwrap()
-                            .to_str()
                             .unwrap();
                     }
                     if ui.button("Quit").clicked() {
