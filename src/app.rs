@@ -20,21 +20,21 @@ impl eframe::App for TemplateApp {
                     if ui.button("Quit").clicked() {
                         frame.close();
                     }
-                    if ui.button("Choice").clicked() {
-                        folder = rfd::FileDialog::new()
-                            .set_directory("/")
-                            .pick_folder()
-                            .unwrap()
-                            .to_str()
-                            .unwrap();
-                    }
+                    // if ui.button("Choice").clicked() {
+                    //     folder = rfd::FileDialog::new()
+                    //         .set_directory("/")
+                    //         .pick_folder()
+                    //         .unwrap()
+                    //         .to_str()
+                    //         .unwrap();
+                    // }
                 });
             });
         });
-        egui::CentralPanel::default().show(ctx, |ui| {
-            // ui.heading("Test CentralPanel");
-            // ui.label(format!("Path: {}", folder));
-        });
+        // egui::CentralPanel::default().show(ctx, |ui| {
+        //     // ui.heading("Test CentralPanel");
+        //     // ui.label(format!("Path: {}", folder));
+        // });
     }
 }
 
